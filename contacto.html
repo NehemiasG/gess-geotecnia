@@ -437,8 +437,8 @@
             <div class="footer-section">
                 <h3>Contacto</h3>
                 <ul>
-                    <li><a href="tel:+541123456789">Teléfono: +54 (11) 2345-6789</a></li>
-                    <li><a href="mailto:info@ges-geotecnia.com.ar">Email: info@ges-geotecnia.com.ar</a></li>
+                    <li><a href="tel:+54xxxxxxxxxx">Teléfono: +54 xxxxxxxxxx</a></li>
+                    <li><a href="mailto:ges.geotecnia@gmail.com.ar">Email: ges.geotecnia@gmail.com.ar</a></li>
                     <li>Ubicación: Buenos Aires, Argentina</li>
                 </ul>
             </div>
@@ -450,7 +450,7 @@
 
     <script>
         // Inicializar mapa de Leaflet centrado en Buenos Aires
-        const map = L.map('map').setView([-34.6037, -58.3816], 9);
+        const map = L.map('map').setView([-38.554531249024585, -58.73930639685753], 9);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors',
@@ -458,7 +458,7 @@
         }).addTo(map);
 
         // Agregar marcador para la ubicación
-        const marker = L.marker([-34.6037, -58.3816]).addTo(map);
+        const marker = L.marker([-38.554531249024585, -58.73930639685753]).addTo(map);
         marker.bindPopup('<b>GES-Geotecnia</b><br>Buenos Aires, Argentina').openPopup();
 
         // Manejo del formulario de contacto rápido
@@ -470,3 +470,4 @@
     </script>
 </body>
 </html>
+
