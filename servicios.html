@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios | GES-Geotecnia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3a5f;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #2d7a4a;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #2d7a4a;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7b 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .service-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 80px;
+            align-items: center;
+        }
+
+        .service-detail:nth-child(even) {
+            grid-template-columns: 1fr 1fr;
+            direction: ltr;
+        }
+
+        .service-detail:nth-child(even) .content {
+            order: 2;
+        }
+
+        .service-detail:nth-child(even) .image {
+            order: 1;
+        }
+
+        .service-image {
+            background: linear-gradient(135deg, #2d7a4a 0%, #1e5a3f 100%);
+            height: 300px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .content h2 {
+            color: #1e3a5f;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .benefits {
+            margin: 30px 0;
+            background: #f9f9f9;
+            padding: 20px;
+            border-left: 4px solid #2d7a4a;
+            border-radius: 4px;
+        }
+
+        .benefits h3 {
+            color: #1e3a5f;
+            margin-bottom: 15px;
+        }
+
+        .benefits ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .benefits li {
+            padding: 8px 0;
+            color: #666;
+        }
+
+        .benefits li:before {
+            content: "✓ ";
+            color: #2d7a4a;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .process {
+            margin: 30px 0;
+            background: #f0f8f5;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .process h3 {
+            color: #1e3a5f;
+            margin-bottom: 20px;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .step {
+            background: white;
+            padding: 20px;
+            border-radius: 4px;
+            border-left: 4px solid #2d7a4a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .step-number {
+            color: #2d7a4a;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        footer {
+            background: #1e3a5f;
+            color: white;
+            padding: 50px 20px 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #2d7a4a;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #2d7a4a;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .service-detail {
+                grid-template-columns: 1fr;
+            }
+
+            .service-detail:nth-child(even) .content,
+            .service-detail:nth-child(even) .image {
+                order: initial;
+            }
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+            .content h2 {
+                font-size: 24px;
+            }
+
+            .section {
+                padding: 50px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">GES<span>-Geotecnia</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="solicitar-estudio.html">Solicitar Estudio</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Nuestros Servicios</h1>
+        <p>Soluciones geotécnicas integrales y personalizadas</p>
+    </div>
+
+    <!-- Services -->
+    <section class="section">
+        <!-- Servicio 1 -->
+        <div id="estudios-suelo" class="service-detail">
+            <div class="image">
+                <div class="service-image">📐</div>
+            </div>
+            <div class="content">
+                <h2>Estudios de Suelo para Obras Civiles</h2>
+                <p>Investigaciones geotécnicas completas que proporcionan la información necesaria para el diseño y construcción segura de cualquier proyecto. Nuestros estudios incluyen análisis de capacidad de carga, asentamientos, estratificación de suelos y clasificación geotécnica.</p>
+                
+                <div class="benefits">
+                    <h3>Beneficios Principales</h3>
+                    <ul>
+                        <li>Información confiable para el diseño de cimentaciones</li>
+                        <li>Reducción de riesgos durante la construcción</li>
+                        <li>Optimización de costos de construcción</li>
+                        <li>Cumplimiento de normas técnicas y regulatorias</li>
+                        <li>Evaluación de riesgos geotécnicos</li>
+                    </ul>
+                </div>
+
+                <div class="process">
+                    <h3>Proceso de Trabajo</h3>
+                    <div class="process-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <p>Reconocimiento de sitio y análisis de información existente</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <p>Diseño de programa de investigación específico</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <p>Perforaciones y muestreo de suelos</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <p>Ensayos de laboratorio</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <p>Análisis de datos e interpretación</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <p>Informe técnico detallado</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p><strong>Casos de uso típicos:</strong> Edificios residenciales, comerciales, plantas industriales, estructuras especiales, puentes, torres de transmisión.</p>
+            </div>
+        </div>
+
+        <!-- Servicio 2 -->
+        <div id="ensayos-laboratorio" class="service-detail">
+            <div class="image">
+                <div class="service-image">🧪</div>
+            </div>
+            <div class="content">
+                <h2>Ensayos de Laboratorio y Clasificación de Suelos</h2>
+                <p>Suite completa de ensayos geotécnicos para caracterizar las propiedades físicas y mecánicas de los suelos. Nos especializamos en clasificación USCS y AASHTO, pruebas de resistencia y análisis de comportamiento bajo diferentes condiciones.</p>
+                
+                <div class="benefits">
+                    <h3>Beneficios Principales</h3>
+                    <ul>
+                        <li>Clasificación precisa de suelos según normativas internacionales</li>
+                        <li>Parámetros mecánicos confiables para diseño</li>
+                        <li>Análisis de comportamiento a largo plazo</li>
+                        <li>Control de calidad en proyectos</li>
+                        <li>Documentación completa y trazable</li>
+                    </ul>
+                </div>
+
+                <div class="process">
+                    <h3>Ensayos Disponibles</h3>
+                    <div class="process-steps">
+                        <div class="step">
+                            <div class="step-number">•</div>
+                            <p>Análisis granulométrico y densidad de sólidos</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">•</div>
+                            <p>Límites de Atterberg</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">•</div>
+                            <p>Proctor estándar y modificado</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">•</div>
+                            <p>Ensayos triaxiales y corte directo</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">•</div>
+                            <p>Consolidación y permeabilidad</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">•</div>
+                            <p>Compresión simple</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p><strong>Casos de uso típicos:</strong> Diseño de terraplenes, pavimentos, diques, control de compactación, análisis de estabilidad de taludes.</p>
+            </div>
+        </div>
+
+        <!-- Servicio 3 -->
+        <div id="relevamientos-campo" class="service-detail">
+            <div class="image">
+                <div class="service-image">🔍</div>
+            </div>
+            <div class="content">
+                <h2>Relevamientos Geotécnicos en Campo</h2>
+                <p>Inspecciones detalladas en sitio que permiten comprender las condiciones geotécnicas reales del terreno. Incluye descripción estratigráfica, evaluación visual de suelos, medición de niveles freáticos y evaluación de riesgos geológicos.</p>
+                
+                <div class="benefits">
+                    <h3>Beneficios Principales</h3>
+                    <ul>
+                        <li>Conocimiento directo de las condiciones del sitio</li>
+                        <li>Identificación temprana de problemas potenciales</li>
+                        <li>Datos de referencia para modelos geotécnicos</li>
+                        <li>Documentación fotográfica detallada</li>
+                        <li>Evaluación de riesgos de remobilización de contaminantes</li>
+                    </ul>
+                </div>
+
+                <div class="process">
+                    <h3>Actividades de Campo</h3>
+                    <div class="process-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <p>Calicatas a cielo abierto</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <p>Perforaciones con SPT y muestreo continuo</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <p>Medición de nivel freático</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <p>Ensayos in situ (penetrómetro dinámico, vano de corte)</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <p>Descripción de muestras de suelo</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <p>Documentación y cartografía</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p><strong>Casos de uso típicos:</strong> Reconocimiento inicial de sitios, caracterización de depósitos residuales, evaluación de riesgos ambientales, investigaciones arqueológicas.</p>
+            </div>
+        </div>
+
+        <!-- Servicio 4 -->
+        <div id="infraestructura" class="service-detail">
+            <div class="image">
+                <div class="service-image">🛣️</div>
+            </div>
+            <div class="content">
+                <h2>Infraestructura Vial, Hidráulica y Sistemas de Drenaje</h2>
+                <p>Estudios especializados para el diseño y construcción de infraestructuras lineales y sistemas de control de agua. Nuestro trabajo incluye evaluación de fundaciones de vías, análisis de estabilidad de taludes, y diseño de sistemas de drenaje superficial y subsuperficial.</p>
+                
+                <div class="benefits">
+                    <h3>Beneficios Principales</h3>
+                    <ul>
+                        <li>Pavimentos duraderos y seguros</li>
+                        <li>Sistemas de drenaje eficientes</li>
+                        <li>Estabilidad de taludes garantizada</li>
+                        <li>Manejo sostenible del agua</li>
+                        <li>Reducción de mantenimiento futuro</li>
+                    </ul>
+                </div>
+
+                <div class="process">
+                    <h3>Componentes del Estudio</h3>
+                    <div class="process-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <p>Investigación de suelos en zona de trazado</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <p>Estudio hidrológico e hidrogeológico</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <p>Análisis de estabilidad de taludes</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <p>Diseño de estructura de pavimento</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <p>Plan de drenaje y control de agua</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <p>Especificaciones de construcción</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p><strong>Casos de uso típicos:</strong> Carreteras y caminos, vías férreas, sistemas de alcantarillado, diques y represas, canales de irrigación.</p>
+            </div>
+        </div>
+
+        <!-- Servicio 5 -->
+        <div id="estudios-agricolas" class="service-detail">
+            <div class="image">
+                <div class="service-image">🌾</div>
+            </div>
+            <div class="content">
+                <h2>Estudios Agrícolas y Planificación de Uso de Suelos</h2>
+                <p>Evaluación integral de suelos orientada a maximizar la productividad agrícola y la sostenibilidad del uso de la tierra. Incluye análisis de propiedades físicas y químicas, potencial agrológico, y recomendaciones de manejo específicas para cada parcela.</p>
+                
+                <div class="benefits">
+                    <h3>Beneficios Principales</h3>
+                    <ul>
+                        <li>Identificación de potencial productivo real</li>
+                        <li>Recomendaciones de mejora del suelo</li>
+                        <li>Optimización de uso agrícola</li>
+                        <li>Sostenibilidad ambiental mejorada</li>
+                        <li>Base para planificación a largo plazo</li>
+                    </ul>
+                </div>
+
+                <div class="process">
+                    <h3>Metodología de Estudio</h3>
+                    <div class="process-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <p>Muestreo estratificado por zonas</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <p>Análisis de propiedades físicas</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <p>Análisis químico completo</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <p>Evaluación de fertilidad</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <p>Cartografía de zonas homogéneas</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <p>Recomendaciones de manejo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p><strong>Casos de uso típicos:</strong> Evaluación de tierras para compra, diagnóstico agrícola, diseño de estrategias de fertilización, planificación de sistemas de riego, evaluación de contaminación ambiental.</p>
+            </div>
+        </div>
+
+        <!-- Servicio 6 -->
+        <div id="asesoramiento" class="service-detail">
+            <div class="image">
+                <div class="service-image">📋</div>
+            </div>
+            <div class="content">
+                <h2>Asesoramiento Técnico e Informes Profesionales</h2>
+                <p>Análisis experto y consultoría para resolver problemas geotécnicos específicos. Ofrecemos revisión crítica de estudios, segundas opiniones técnicas, y elaboración de reportes profesionales de alto nivel para apoyo a la toma de decisiones.</p>
+                
+                <div class="benefits">
+                    <h3>Beneficios Principales</h3>
+                    <ul>
+                        <li>Perspectiva técnica independiente</li>
+                        <li>Validación de datos y análisis</li>
+                        <li>Solución de problemas específicos</li>
+                        <li>Reportes técnicos profesionales</li>
+                        <li>Cumplimiento normativo garantizado</li>
+                    </ul>
+                </div>
+
+                <div class="process">
+                    <h3>Servicios de Consultoría</h3>
+                    <div class="process-steps">
+                        <div class="step">
+                            <div class="step-number">•</div>
+                            <p>Revisión de estudios existentes</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">•</div>
+                            <p>Segunda opinión técnica</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">•</div>
+                            <p>Modelamiento geotécnico avanzado</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">•</div>
+                            <p>Capacitación técnica</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">•</div>
+                            <p>Informes ejecutivos personalizados</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">•</div>
+                            <p>Auditoría de proyectos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p><strong>Casos de uso típicos:</strong> Soporte técnico durante construcción, resolución de conflictos técnicos, arbitraje, elaboración de reportes para organismos reguladores, asesoramiento legal-técnico.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>GES-Geotecnia</h3>
+                <p>Especialistas en estudios de suelo y análisis geotécnico para tus proyectos.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <ul>
+                    <li><a href="tel:+541123456789">Teléfono: +54 (11) 2345-6789</a></li>
+                    <li><a href="mailto:info@ges-geotecnia.com.ar">Email: info@ges-geotecnia.com.ar</a></li>
+                    <li>Ubicación: Buenos Aires, Argentina</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 GES-Geotecnia. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

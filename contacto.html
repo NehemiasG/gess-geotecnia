@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | GES-Geotecnia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3a5f;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #2d7a4a;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #2d7a4a;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7b 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+
+        .contact-info h2 {
+            color: #1e3a5f;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+            border-left: 4px solid #2d7a4a;
+        }
+
+        .contact-card h3 {
+            color: #1e3a5f;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .contact-card p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .contact-card a {
+            color: #2d7a4a;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: #1e3a5f;
+        }
+
+        .icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .hours {
+            background: #f0f8f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .hours h3 {
+            color: #1e3a5f;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .hours p {
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .map-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            height: 500px;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .quick-contact-form {
+            background: #f9f9f9;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-top: 80px;
+        }
+
+        .quick-contact-form h2 {
+            color: #1e3a5f;
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #1e3a5f;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2d7a4a;
+            box-shadow: 0 0 0 3px rgba(45, 122, 74, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn-submit {
+            background: #2d7a4a;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background: #225a38;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(45, 122, 74, 0.3);
+        }
+
+        footer {
+            background: #1e3a5f;
+            color: white;
+            padding: 50px 20px 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #2d7a4a;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #2d7a4a;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+            .section {
+                padding: 50px 20px;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">GES<span>-Geotecnia</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="solicitar-estudio.html">Solicitar Estudio</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Contacto</h1>
+        <p>Ponte en contacto con nosotros para consultas y solicitudes</p>
+    </div>
+
+    <!-- Contact Information -->
+    <section class="section">
+        <div class="contact-grid">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h2>Información de Contacto</h2>
+                
+                <div class="contact-card">
+                    <div class="icon">📞</div>
+                    <h3>Teléfono</h3>
+                    <p><a href="tel:+541123456789">+54 (11) 2345-6789</a></p>
+                    <p style="font-size: 14px; color: #999;">Disponible de lunes a viernes</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="icon">📧</div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:info@ges-geotecnia.com.ar">info@ges-geotecnia.com.ar</a></p>
+                    <p style="font-size: 14px; color: #999;">Responderemos en las próximas 24 horas</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="icon">📍</div>
+                    <h3>Ubicación</h3>
+                    <p>Provincia de Buenos Aires</p>
+                    <p style="font-size: 14px; color: #999;">Argentina</p>
+                </div>
+
+                <div class="hours">
+                    <h3>Horarios de Atención</h3>
+                    <p><strong>Lunes a Viernes:</strong> 09:00 - 18:00 hs</p>
+                    <p><strong>Sábado:</strong> 09:00 - 13:00 hs</p>
+                    <p><strong>Domingo:</strong> Cerrado</p>
+                </div>
+            </div>
+
+            <!-- Map -->
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Contact Form -->
+    <section class="section">
+        <div class="quick-contact-form">
+            <h2>Envía un Mensaje Rápido</h2>
+            <form id="quickContactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="qcName">Nombre <span style="color: #d32f2f;">*</span></label>
+                        <input type="text" id="qcName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="qcEmail">Email <span style="color: #d32f2f;">*</span></label>
+                        <input type="email" id="qcEmail" name="email" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="qcPhone">Teléfono</label>
+                    <input type="tel" id="qcPhone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="qcSubject">Asunto <span style="color: #d32f2f;">*</span></label>
+                    <input type="text" id="qcSubject" name="subject" required placeholder="¿Cuál es el motivo de tu mensaje?">
+                </div>
+
+                <div class="form-group">
+                    <label for="qcMessage">Mensaje <span style="color: #d32f2f;">*</span></label>
+                    <textarea id="qcMessage" name="message" required placeholder="Escribe tu mensaje aquí..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>GES-Geotecnia</h3>
+                <p>Especialistas en estudios de suelo y análisis geotécnico para tus proyectos.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <ul>
+                    <li><a href="tel:+541123456789">Teléfono: +54 (11) 2345-6789</a></li>
+                    <li><a href="mailto:info@ges-geotecnia.com.ar">Email: info@ges-geotecnia.com.ar</a></li>
+                    <li>Ubicación: Buenos Aires, Argentina</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 GES-Geotecnia. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar mapa de Leaflet centrado en Buenos Aires
+        const map = L.map('map').setView([-34.6037, -58.3816], 9);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Agregar marcador para la ubicación
+        const marker = L.marker([-34.6037, -58.3816]).addTo(map);
+        marker.bindPopup('<b>GES-Geotecnia</b><br>Buenos Aires, Argentina').openPopup();
+
+        // Manejo del formulario de contacto rápido
+        document.getElementById('quickContactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Gracias por tu mensaje. Nos pondremos en contacto pronto.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

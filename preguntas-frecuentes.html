@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes | GES-Geotecnia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3a5f;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #2d7a4a;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #2d7a4a;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7b 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        .section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .faq-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7b 100%);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, #163050 0%, #24506a 100%);
+        }
+
+        .faq-icon {
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .faq-answer ul {
+            list-style: none;
+            margin: 15px 0;
+            color: #666;
+        }
+
+        .faq-answer li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .faq-answer li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2d7a4a;
+            font-weight: bold;
+        }
+
+        .category-title {
+            grid-column: 1 / -1;
+            color: #1e3a5f;
+            font-size: 28px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #2d7a4a;
+            text-align: center;
+        }
+
+        .category-title:first-child {
+            margin-top: 0;
+        }
+
+        footer {
+            background: #1e3a5f;
+            color: white;
+            padding: 50px 20px 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #2d7a4a;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #2d7a4a;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .contact-reminder {
+            background: #f0f8f5;
+            border-left: 4px solid #2d7a4a;
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .contact-reminder p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .contact-reminder a {
+            color: #2d7a4a;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-reminder a:hover {
+            color: #1e3a5f;
+        }
+
+        @media (max-width: 768px) {
+            .faq-container {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+            .section {
+                padding: 50px 20px;
+            }
+
+            .category-title {
+                grid-column: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">GES<span>-Geotecnia</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="solicitar-estudio.html">Solicitar Estudio</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Preguntas Frecuentes</h1>
+        <p>Resolvemos las dudas más comunes sobre nuestros servicios</p>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="section">
+        <div class="faq-container">
+            <!-- Categoria: General -->
+            <div class="category-title">❓ Preguntas Generales</div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Qué es GES-Geotecnia?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>GES-Geotecnia es una empresa especializada en estudios de suelo y análisis geotécnicos. Ofrecemos soluciones profesionales para obras civiles, infraestructura y proyectos agrícolas en la Provincia de Buenos Aires y alrededores.</p>
+                    <p>Nos destacamos por nuestro enfoque técnico riguroso y nuestra capacidad de adaptar cada estudio a las necesidades específicas del cliente.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Cuáles son las áreas de cobertura?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Operamos principalmente en la Provincia de Buenos Aires, Argentina. Contamos con experiencia en las zonas de:</p>
+                    <ul>
+                        <li>AMBA (Área Metropolitana de Buenos Aires)</li>
+                        <li>Interior de la provincia</li>
+                        <li>Zonas costeras</li>
+                        <li>Áreas rurales y agrícolas</li>
+                    </ul>
+                    <p>Para consultas de otras provincias, no dudes en contactarnos.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Cómo puedo solicitar un estudio?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Es muy simple. Puedes:</p>
+                    <ul>
+                        <li>Completar nuestro formulario de <a href="solicitar-estudio.html" style="color: #2d7a4a; font-weight: 600;">solicitud de estudio</a></li>
+                        <li>Enviarnos un email a info@ges-geotecnia.com.ar</li>
+                        <li>Llamarnos al +54 (11) 2345-6789</li>
+                    </ul>
+                    <p>Nos pondremos en contacto dentro de las 24 horas para evaluar tu proyecto.</p>
+                </div>
+            </div>
+
+            <!-- Categoria: Servicios -->
+            <div class="category-title">🛠️ Sobre Nuestros Servicios</div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Cuánto tiempo tarda un estudio geotécnico?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>El tiempo depende de varios factores:</p>
+                    <ul>
+                        <li><strong>Estudios simples:</strong> 2-4 semanas</li>
+                        <li><strong>Estudios estándar:</strong> 4-8 semanas</li>
+                        <li><strong>Estudios complejos:</strong> 8-12 semanas</li>
+                    </ul>
+                    <p>Este plazo incluye investigación de campo, ensayos de laboratorio e informe final. Podemos acelerar el proceso si es necesario.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Qué incluye un estudio de suelo completo?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Un estudio completo incluye:</p>
+                    <ul>
+                        <li>Reconocimiento de sitio e investigación de antecedentes</li>
+                        <li>Perforaciones y muestreo estratificado</li>
+                        <li>Ensayos de laboratorio completos</li>
+                        <li>Análisis e interpretación de resultados</li>
+                        <li>Informe técnico profesional con recomendaciones</li>
+                        <li>Asesoramiento en ejecución de obra</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Realizan trabajos de asesoramiento durante la construcción?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí. Ofrecemos asesoramiento técnico durante la ejecución de obras para:</p>
+                    <ul>
+                        <li>Validar condiciones reales del sitio</li>
+                        <li>Resolver problemas geotécnicos inesperados</li>
+                        <li>Verificar cumplimiento de especificaciones</li>
+                        <li>Ajustar recomendaciones según hallazgos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Categoria: Costos y Presupuestos -->
+            <div class="category-title">💰 Costos y Presupuestos</div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Cuál es el costo de un estudio?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>El costo varía según:</p>
+                    <ul>
+                        <li><strong>Tipo de proyecto:</strong> civil, vial, agrícola, etc.</li>
+                        <li><strong>Área a investigar:</strong> superficie y profundidad</li>
+                        <li><strong>Complejidad geotécnica:</strong> tipo de suelos, problemas esperados</li>
+                        <li><strong>Accesibilidad del sitio:</strong> distancia, vías de acceso</li>
+                    </ul>
+                    <p>Brindamos presupuestos sin costo después de evaluar tu proyecto. Contactate con nosotros para un análisis personalizado.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Ofrecen opciones de pago flexible?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí. Trabajamos con diferentes esquemas de pago:</p>
+                    <ul>
+                        <li>Pago único completo (con descuento)</li>
+                        <li>50% inicial, 50% al entrega de informe</li>
+                        <li>Planes para proyectos extensos</li>
+                    </ul>
+                    <p>Consulta con nosotros sobre opciones disponibles para tu caso.</p>
+                </div>
+            </div>
+
+            <!-- Categoria: Técnica -->
+            <div class="category-title">⚙️ Preguntas Técnicas</div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Qué normativas y estándares siguen?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Nuestros estudios cumplen con:</p>
+                    <ul>
+                        <li>IRAM (Normas Argentinas)</li>
+                        <li>AASHTO (para proyectos viales)</li>
+                        <li>DIN alemanas (cuando aplica)</li>
+                        <li>Códigos de construcción locales</li>
+                        <li>Mejores prácticas internacionales</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Puedo confiar en los resultados de los ensayos?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Completamente. Nuestros laboratorios siguen protocolos rigurosos de control de calidad:</p>
+                    <ul>
+                        <li>Equipos calibrados regularmente</li>
+                        <li>Ensayos replicados para validación</li>
+                        <li>Documentación completa de procedimientos</li>
+                        <li>Trazabilidad de muestras</li>
+                        <li>Profesionales certificados</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Qué pasa si durante la obra se encuentran condiciones distintas a las previstas?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Esto puede ocurrir. Nuestro protocolo es:</p>
+                    <ul>
+                        <li>Evaluación in situ del hallazgo</li>
+                        <li>Muestreo y análisis adicional si necesario</li>
+                        <li>Recomendaciones técnicas adaptadas</li>
+                        <li>Comunicación clara con el cliente y diseñador</li>
+                    </ul>
+                    <p>Por eso el asesoramiento durante construcción es tan importante.</p>
+                </div>
+            </div>
+
+            <!-- Categoria: General -->
+            <div class="category-title">📋 Información y Documentación</div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Puedo solicitar una segunda opinión técnica?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí. Ofrecemos servicio de revisión independiente de estudios realizados por terceros. Esto puede ser útil para:</p>
+                    <ul>
+                        <li>Validar resultados de estudios previos</li>
+                        <li>Resolver discrepancias técnicas</li>
+                        <li>Obtener perspectiva profesional independiente</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Qué información debo proporcionar?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Cuanta más información mejor. Nos ayuda:</p>
+                    <ul>
+                        <li>Planos y croquis del sitio</li>
+                        <li>Fotos del terreno y alrededores</li>
+                        <li>Datos sobre historia del sitio</li>
+                        <li>Información geológica disponible</li>
+                        <li>Requisitos específicos del proyecto</li>
+                    </ul>
+                    <p>En nuestro formulario puedes adjuntar estos documentos directamente.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Reminder -->
+        <div class="contact-reminder">
+            <p style="font-size: 18px; font-weight: 600; margin-bottom: 20px;">¿No encontraste tu respuesta?</p>
+            <p>Estamos aquí para ayudarte. Ponte en contacto con nosotros</p>
+            <a href="contacto.html">📞 Contacta con GES-Geotecnia</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>GES-Geotecnia</h3>
+                <p>Especialistas en estudios de suelo y análisis geotécnico para tus proyectos.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <ul>
+                    <li><a href="tel:+541123456789">Teléfono: +54 (11) 2345-6789</a></li>
+                    <li><a href="mailto:info@ges-geotecnia.com.ar">Email: info@ges-geotecnia.com.ar</a></li>
+                    <li>Ubicación: Buenos Aires, Argentina</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 GES-Geotecnia. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Manejo de acordeón FAQ
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // Cerrar otros items
+                faqItems.forEach(other => {
+                    if (other !== item) {
+                        other.classList.remove('active');
+                    }
+                });
+
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+
+        // Abrir primer item por defecto
+        if (faqItems.length > 0) {
+            // Encontrar el primer faq-item (saltando títulos de categoría)
+            const firstItem = Array.from(faqItems).find(item => item.classList.contains('faq-item'));
+            if (firstItem) {
+                firstItem.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

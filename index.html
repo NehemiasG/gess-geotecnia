@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GES-Geotecnia | Estudios de Suelo para Obras Civiles</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header y Navegación */
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3a5f;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #2d7a4a;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #2d7a4a;
+        }
+
+        /* Banner Hero */
+        .hero {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7b 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%231e3a5f" width="1200" height="600"/><path fill="%23ffffff" fill-opacity="0.03" d="M0 300L100 250L200 300L300 200L400 300L500 150L600 300L700 100L800 300L900 50L1000 300L1100 150L1200 300V600H0Z"/></svg>') repeat-x bottom;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #2d7a4a;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #225a38;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(45, 122, 74, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #1e3a5f;
+        }
+
+        .btn-secondary:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        /* Secciones */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-alt {
+            background: #f9f9f9;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #1e3a5f;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #2d7a4a;
+        }
+
+        /* Servicios */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid #2d7a4a;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-card h3 {
+            color: #1e3a5f;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .service-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .service-card a {
+            color: #2d7a4a;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .service-card a:hover {
+            color: #1e3a5f;
+        }
+
+        /* Valores */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .value-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .value-item h3 {
+            color: #1e3a5f;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .value-item p {
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3a5f;
+            color: white;
+            padding: 50px 20px 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #2d7a4a;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #2d7a4a;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .section {
+                padding: 50px 20px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">GES<span>-Geotecnia</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="solicitar-estudio.html">Solicitar Estudio</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Estudios de Suelo Precisos y Confiables</h1>
+            <p>Brindar soluciones geotécnicas profesionales para el éxito de tus proyectos de infraestructura, obras civiles y agricultura.</p>
+            <div class="cta-buttons">
+                <a href="solicitar-estudio.html" class="btn btn-primary">Solicitar Estudio</a>
+                <a href="servicios.html" class="btn btn-secondary">Ver Nuestros Servicios</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Sobre GES-Geotecnia -->
+    <section class="section">
+        <h2 class="section-title">¿Quiénes Somos?</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 30px; font-size: 16px; color: #666;">
+            GES-Geotecnia es una empresa especializada en estudios de suelo y análisis geotécnicos para obras civiles, infraestructura y proyectos agrícolas. 
+            Con un enfoque técnico riguroso y una perspectiva interdisciplinaria, proporcionamos soluciones personalizadas que garantizan decisiones constructivas informadas y productivas.
+        </p>
+    </section>
+
+    <!-- Sección Servicios -->
+    <section class="section section-alt">
+        <h2 class="section-title">Nuestros Servicios</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>📐 Estudios de Suelo para Obras Civiles</h3>
+                <p>Investigaciones geotécnicas completas para cimientos, estructuras y proyectos de construcción.</p>
+                <a href="servicios.html#estudios-suelo">Más información →</a>
+            </div>
+            <div class="service-card">
+                <h3>🧪 Ensayos de Laboratorio</h3>
+                <p>Clasificación de suelos, pruebas de resistencia y análisis de propiedades geotécnicas.</p>
+                <a href="servicios.html#ensayos-laboratorio">Más información →</a>
+            </div>
+            <div class="service-card">
+                <h3>🔍 Relevamientos Geotécnicos en Campo</h3>
+                <p>Inspecciones in situ, calicatas, perforaciones y muestreo de suelos.</p>
+                <a href="servicios.html#relevamientos-campo">Más información →</a>
+            </div>
+            <div class="service-card">
+                <h3>🛣️ Infraestructura Vial e Hidráulica</h3>
+                <p>Estudios especializados para carreteras, vías férreas, sistemas de drenaje y proyectos hidráulicos.</p>
+                <a href="servicios.html#infraestructura">Más información →</a>
+            </div>
+            <div class="service-card">
+                <h3>🌾 Estudios Agrícolas</h3>
+                <p>Evaluación de suelos para uso agrícola, planificación y mejora de productividad.</p>
+                <a href="servicios.html#estudios-agricolas">Más información →</a>
+            </div>
+            <div class="service-card">
+                <h3>📋 Asesoramiento Técnico e Informes</h3>
+                <p>Análisis experto y elaboración de reportes profesionales para toma de decisiones.</p>
+                <a href="servicios.html#asesoramiento">Más información →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Valores -->
+    <section class="section">
+        <h2 class="section-title">Nuestros Valores</h2>
+        <div class="values-grid">
+            <div class="value-item">
+                <div class="value-icon">⚙️</div>
+                <h3>Precisión Técnica</h3>
+                <p>Utilizamos metodologías rigurosas y equipos modernos para garantizar resultados confiables.</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon">🤝</div>
+                <h3>Responsabilidad</h3>
+                <p>Nos comprometemos con la excelencia en cada proyecto y análisis que realizamos.</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon">🌍</div>
+                <h3>Enfoque Local</h3>
+                <p>Conocimiento profundo del contexto geográfico y ambiental de la región.</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon">🎯</div>
+                <h3>Soluciones Adaptadas</h3>
+                <p>Cada proyecto es único; ofrecemos soluciones personalizadas para tus necesidades específicas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>GES-Geotecnia</h3>
+                <p>Especialistas en estudios de suelo y análisis geotécnico para tus proyectos.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <ul>
+                    <li><a href="tel:+541123456789">Teléfono: +54 (11) 2345-6789</a></li>
+                    <li><a href="mailto:info@ges-geotecnia.com.ar">Email: info@ges-geotecnia.com.ar</a></li>
+                    <li>Ubicación: Buenos Aires, Argentina</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 GES-Geotecnia. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
